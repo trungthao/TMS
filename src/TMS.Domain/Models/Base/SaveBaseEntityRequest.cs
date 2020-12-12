@@ -1,0 +1,9 @@
+using TMS.Domain.Constants;
+
+namespace TMS.Domain.Models
+{
+    public class SaveBaseEntityRequest
+    {
+        public Enumeartions.EntityState EntityState { get; set; }
+    }
+}

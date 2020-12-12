@@ -1,0 +1,12 @@
+/home/tlynmm/Projects/TMS.API/src/TMS.Library/obj/Debug/net5.0/TMS.Library.csprojAssemblyReference.cache
+/home/tlynmm/Projects/TMS.API/src/TMS.Library/obj/Debug/net5.0/TMS.Library.GeneratedMSBuildEditorConfig.editorconfig
+/home/tlynmm/Projects/TMS.API/src/TMS.Library/obj/Debug/net5.0/TMS.Library.AssemblyInfoInputs.cache
+/home/tlynmm/Projects/TMS.API/src/TMS.Library/obj/Debug/net5.0/TMS.Library.AssemblyInfo.cs
+/home/tlynmm/Projects/TMS.API/src/TMS.Library/obj/Debug/net5.0/TMS.Library.csproj.CoreCompileInputs.cache
+/home/tlynmm/Projects/TMS.API/src/TMS.Library/bin/Debug/net5.0/TMS.Library.deps.json
+/home/tlynmm/Projects/TMS.API/src/TMS.Library/bin/Debug/net5.0/TMS.Library.dll
+/home/tlynmm/Projects/TMS.API/src/TMS.Library/bin/Debug/net5.0/ref/TMS.Library.dll
+/home/tlynmm/Projects/TMS.API/src/TMS.Library/bin/Debug/net5.0/TMS.Library.pdb
+/home/tlynmm/Projects/TMS.API/src/TMS.Library/obj/Debug/net5.0/TMS.Library.dll
+/home/tlynmm/Projects/TMS.API/src/TMS.Library/obj/Debug/net5.0/ref/TMS.Library.dll
+/home/tlynmm/Projects/TMS.API/src/TMS.Library/obj/Debug/net5.0/TMS.Library.pdb

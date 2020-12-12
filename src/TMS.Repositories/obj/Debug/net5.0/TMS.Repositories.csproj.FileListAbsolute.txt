@@ -1,0 +1,17 @@
+/home/tlynmm/Projects/TMS.API/src/TMS.Repositories/obj/Debug/net5.0/TMS.Repositories.csprojAssemblyReference.cache
+/home/tlynmm/Projects/TMS.API/src/TMS.Repositories/obj/Debug/net5.0/TMS.Repositories.GeneratedMSBuildEditorConfig.editorconfig
+/home/tlynmm/Projects/TMS.API/src/TMS.Repositories/obj/Debug/net5.0/TMS.Repositories.AssemblyInfoInputs.cache
+/home/tlynmm/Projects/TMS.API/src/TMS.Repositories/obj/Debug/net5.0/TMS.Repositories.AssemblyInfo.cs
+/home/tlynmm/Projects/TMS.API/src/TMS.Repositories/obj/Debug/net5.0/TMS.Repositories.csproj.CoreCompileInputs.cache
+/home/tlynmm/Projects/TMS.API/src/TMS.Repositories/bin/Debug/net5.0/TMS.Repositories.deps.json
+/home/tlynmm/Projects/TMS.API/src/TMS.Repositories/bin/Debug/net5.0/TMS.Repositories.dll
+/home/tlynmm/Projects/TMS.API/src/TMS.Repositories/bin/Debug/net5.0/ref/TMS.Repositories.dll
+/home/tlynmm/Projects/TMS.API/src/TMS.Repositories/bin/Debug/net5.0/TMS.Repositories.pdb
+/home/tlynmm/Projects/TMS.API/src/TMS.Repositories/bin/Debug/net5.0/TMS.Domain.dll
+/home/tlynmm/Projects/TMS.API/src/TMS.Repositories/bin/Debug/net5.0/TMS.Domain.pdb
+/home/tlynmm/Projects/TMS.API/src/TMS.Repositories/obj/Debug/net5.0/TMS.Repositories.csproj.CopyComplete
+/home/tlynmm/Projects/TMS.API/src/TMS.Repositories/obj/Debug/net5.0/TMS.Repositories.dll
+/home/tlynmm/Projects/TMS.API/src/TMS.Repositories/obj/Debug/net5.0/ref/TMS.Repositories.dll
+/home/tlynmm/Projects/TMS.API/src/TMS.Repositories/obj/Debug/net5.0/TMS.Repositories.pdb
+/home/tlynmm/Projects/TMS.API/src/TMS.Repositories/bin/Debug/net5.0/TMS.Library.dll
+/home/tlynmm/Projects/TMS.API/src/TMS.Repositories/bin/Debug/net5.0/TMS.Library.pdb

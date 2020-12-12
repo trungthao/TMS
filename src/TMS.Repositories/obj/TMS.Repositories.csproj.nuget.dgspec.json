@@ -1,0 +1,191 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/tlynmm/Projects/TMS.API/src/TMS.Repositories/TMS.Repositories.csproj": {}
+  },
+  "projects": {
+    "/home/tlynmm/Projects/TMS.API/src/TMS.Domain/TMS.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/tlynmm/Projects/TMS.API/src/TMS.Domain/TMS.Domain.csproj",
+        "projectName": "TMS.Domain",
+        "projectPath": "/home/tlynmm/Projects/TMS.API/src/TMS.Domain/TMS.Domain.csproj",
+        "packagesPath": "/home/tlynmm/.nuget/packages/",
+        "outputPath": "/home/tlynmm/Projects/TMS.API/src/TMS.Domain/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/tlynmm/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.100/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/tlynmm/Projects/TMS.API/src/TMS.Library/TMS.Library.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/tlynmm/Projects/TMS.API/src/TMS.Library/TMS.Library.csproj",
+        "projectName": "TMS.Library",
+        "projectPath": "/home/tlynmm/Projects/TMS.API/src/TMS.Library/TMS.Library.csproj",
+        "packagesPath": "/home/tlynmm/.nuget/packages/",
+        "outputPath": "/home/tlynmm/Projects/TMS.API/src/TMS.Library/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/tlynmm/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.0.78, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[8.0.22, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.100/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/tlynmm/Projects/TMS.API/src/TMS.Repositories/TMS.Repositories.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/tlynmm/Projects/TMS.API/src/TMS.Repositories/TMS.Repositories.csproj",
+        "projectName": "TMS.Repositories",
+        "projectPath": "/home/tlynmm/Projects/TMS.API/src/TMS.Repositories/TMS.Repositories.csproj",
+        "packagesPath": "/home/tlynmm/.nuget/packages/",
+        "outputPath": "/home/tlynmm/Projects/TMS.API/src/TMS.Repositories/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/tlynmm/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "/home/tlynmm/Projects/TMS.API/src/TMS.Domain/TMS.Domain.csproj": {
+                "projectPath": "/home/tlynmm/Projects/TMS.API/src/TMS.Domain/TMS.Domain.csproj"
+              },
+              "/home/tlynmm/Projects/TMS.API/src/TMS.Library/TMS.Library.csproj": {
+                "projectPath": "/home/tlynmm/Projects/TMS.API/src/TMS.Library/TMS.Library.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.0.78, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.100/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -8,6 +8,8 @@ namespace TMS.Domain.Models
 {
     public class SaveTestDetailRequest : SaveBaseEntityRequest
     {
+        public int TestDetailId { get; set; }
+
         public string TestDetailName { get; set; }
     }
 }

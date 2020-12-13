@@ -9,6 +9,7 @@ namespace src.TMS.API.Mapping
         public AutoMapperProfile()
         {
             CreateMap<SaveTestRequest, Test>();
+            CreateMap<SaveTestDetailRequest, TestDetail>();
         }
     }
 }

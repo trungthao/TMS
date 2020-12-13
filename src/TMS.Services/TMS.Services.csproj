@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TMS.Domain\TMS.Domain.csproj" />
+    <ProjectReference Include="..\TMS.Library\TMS.Library.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
@@ -10,10 +11,6 @@
 
   <ItemGroup>
     <PackageReference Include="MySql.Data" Version="8.0.22" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\TMS.Library\TMS.Library.csproj" />
   </ItemGroup>
 
 </Project>

@@ -37,7 +37,7 @@ namespace TMS.API.Controllers
             var testEntity = _mapper.Map<Test>(saveTestRequest);
             var response = await _service.SaveEntity(testEntity);
 
-            return (SaveTestResponse)response;
+            return Ok(response);
         }
     }
 }

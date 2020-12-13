@@ -7,6 +7,6 @@ namespace TMS.Domain.Repositories
 {
     public interface IBaseRepository
     {
-        public Task<int> SaveEntity(BaseEntity entity, IDbConnection conn = null, IDbTransaction trans = null);
+        public Task<bool> SaveEntity(BaseEntity entity, IDbConnection conn = null, IDbTransaction trans = null);
     }
 }

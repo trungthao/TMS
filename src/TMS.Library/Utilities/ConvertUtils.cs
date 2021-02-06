@@ -21,7 +21,7 @@ namespace TMS.Library.Utilities
                 properties = properties.Where(prop => prop.GetCustomAttribute(typeof(NotColumnAttribute), true) == null).ToArray();
                 foreach (var prop in properties)
                 {
-                    var propName = "$" + prop.Name;
+                    var propName = "@" + prop.Name;
                     object propValue = prop.GetValue(param);
                     dicParam.AddOrUpdate(propName, propValue);
                 }

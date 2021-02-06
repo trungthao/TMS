@@ -10,6 +10,7 @@ using TMS.Library.Interfaces;
 using System.Data;
 using TMS.Library.Extensions;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace TMS.Services
 {
@@ -30,11 +31,11 @@ namespace TMS.Services
             if (isValid)
             {
                 var connectionString = _configService.GetConnectionStrings();
-                MySqlConnection conn = null;
+                SqlConnection conn = null;
                 IDbTransaction trans = null;
                 try
                 {
-                    conn = new MySqlConnection(connectionString);
+                    conn = new SqlConnection(connectionString);
                     if (conn != null && conn.State == ConnectionState.Closed)
                     {
                         conn.Open();

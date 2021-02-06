@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -16,6 +16,10 @@
     <ProjectReference Include="..\TMS.Domain\TMS.Domain.csproj" />
     <ProjectReference Include="..\TMS.Services\TMS.Services.csproj" />
     <ProjectReference Include="..\TMS.Repositories\TMS.Repositories.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Middleware\" />
   </ItemGroup>
 
 </Project>

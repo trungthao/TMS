@@ -29,11 +29,15 @@ namespace TMS.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IConfiguration>(Configuration);
+            services.AddConfigs(Configuration);
+            
             services.AddControllers();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            services.AddServices();
-            services.AddRepositories();
-            services.AddLibraries();
+
+            services.AddServices()
+                .AddRepositories()
+                .AddLibraries();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TMS.API", Version = "v1" });

@@ -1,9 +1,11 @@
 using System;
+using System.Text.Json.Serialization;
 
 namespace TMS.Domain.Entities
 {
-    public class RefreshToken
+    public class RefreshToken : BaseEntity
     {
+        [JsonIgnore]
         public int Id { get; set; }
 
         public string Token { get; set; }
@@ -14,16 +16,14 @@ namespace TMS.Domain.Entities
 
         public DateTime CreatedDate { get; set; }
 
-        public DateTime ModifiedDate { get; set; }
-
         public string CreatedByIp { get; set; }
 
-        public DateTime? Revoked { get; set; }
+        public DateTime? RevokedDate { get; set; }
 
-        public string RovokedByIp { get; set; }
+        public string RevokedByIp { get; set; }
 
-        public string ReplateByToken { get; set; } 
+        public string ReplacedByToken { get; set; }
 
-        public bool IsActive => Revoked == null && !IsExpired;
+        public bool IsActive => RevokedDate == null && !IsExpired;
     }
 }

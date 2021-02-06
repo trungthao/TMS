@@ -9,6 +9,8 @@ namespace TMS.API.Extensions
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddScoped<ITestRepository, TestRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+
             return services;
         }
     }

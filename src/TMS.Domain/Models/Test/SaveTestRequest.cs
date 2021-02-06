@@ -9,6 +9,6 @@ namespace TMS.Domain.Models
 
         public string TestName { get; set; }
 
-        public List<SaveTestDetailRequest> TestDetails { get; set; }
+        //public List<SaveTestDetailRequest> TestDetails { get; set; }
     }
 }

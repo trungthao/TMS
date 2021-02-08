@@ -4,7 +4,7 @@ using TMS.Repositories;
 
 namespace TMS.API.Extensions
 {
-    public static class ConfigRepositoriesExtension
+    public static class AddRepositoriesExtension
     {
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {

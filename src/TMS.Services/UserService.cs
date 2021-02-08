@@ -14,30 +14,27 @@ using TMS.Domain.Constants;
 using Microsoft.Extensions.Options;
 using System.Security.Claims;
 using System.Security.Cryptography;
+using BC = BCrypt.Net.BCrypt;
 
 namespace TMS.Services
 {
     public class UserService : BaseService, IUserService
     {
         private readonly JwtSettings _jwtSettings;
+        private readonly IEmailService _emailService;
 
         public UserService(IUserRepository repository,
+            IEmailService emailService,
             IOptions<JwtSettings> jwtSettings,
             IConfigService configService) : base(repository, configService)
         {
             _jwtSettings = jwtSettings.Value;
+            _emailService = emailService;
         }
 
         public async Task<AuthenticateResponse> Authenticate(AuthenticateRequest authModel, string ipAddress)
         {
-            var user = new User()
-            {
-                Id = 1,
-                Username = "trungthao",
-                Password = "tlynmm",
-                EntityState = Enumeartions.EntityState.Update,
-                RefreshTokens = new List<RefreshToken>()
-            };
+            var user = new User();
 
             if (user == null)
             {
@@ -50,6 +47,56 @@ namespace TMS.Services
             await SaveEntity(user);
 
             return new AuthenticateResponse(user, jwtToken, refreshToken.Token);
+        }
+
+        public async Task Register(User userEntity, string origin)
+        {
+            //SendAlreadyRegisteredEmail(userEntity.Email, origin);
+            userEntity.VerificationToken = RandomTokenString();
+            userEntity.PasswordHash = BC.HashPassword(userEntity.Password);
+            userEntity.EntityState = Enumeartions.EntityState.Insert;
+
+            await SaveEntity(userEntity);
+
+            SendVerificationEmail(userEntity, origin);
+        }
+
+        private void SendAlreadyRegisteredEmail(string email, string origin)
+        {
+            string message = string.Empty;
+            if (!string.IsNullOrEmpty(origin))
+            {
+                message = $@"<p>If you don't know your password please visit the <a href=""{origin}/account/forgot-password"">forgot password</a> page.</p>";
+            }
+            else
+            {
+                message = "<p>If you don't know your password you can reset it via the <code>/accounts/forgot-password</code> api route.</p>";
+            }
+        }
+
+        private void SendVerificationEmail(User user, string origin)
+        {
+            string message;
+            if (!string.IsNullOrEmpty(origin))
+            {
+                var verifyUrl = $"{origin}/account/verify-email?token={user.VerificationToken}";
+                message = $@"<p>Please click the below link to verify your email address:</p>
+                             <p><a href=""{verifyUrl}"">{verifyUrl}</a></p>";
+            }
+            else
+            {
+                message = $@"<p>Please use the below token to verify your email address with the <code>/accounts/verify-email</code> api route:</p>
+                             <p><code>{user.VerificationToken}</code></p>";
+            }
+
+            // send email code here
+            _emailService.Send(to: user.Email, 
+                subject: "Sign-up Verification API - Verify Email",
+                html: $@"<h4>Verify Email</h4>
+                    <p>Thanks for registering!
+                    {message}
+                "
+            );
         }
 
         /// <summary>
@@ -65,8 +112,8 @@ namespace TMS.Services
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                    new Claim(ClaimTypes.Name, user.Username)
+                    new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
+                    //new Claim(ClaimTypes.Name, user.Username)
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(_jwtSettings.ExpireMinutes),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(secretKey), SecurityAlgorithms.HmacSha256Signature)
@@ -91,6 +138,15 @@ namespace TMS.Services
                     EntityState = Enumeartions.EntityState.Insert
                 };
             }
+        }
+
+        private string RandomTokenString()
+        {
+            using var rngCryptoServiceProvider = new RNGCryptoServiceProvider();
+            var randomBytes = new byte[40];
+            rngCryptoServiceProvider.GetBytes(randomBytes);
+            // convert random bytes to hex string
+            return BitConverter.ToString(randomBytes).Replace("-", "");
         }
     }
 }

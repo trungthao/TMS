@@ -31,11 +31,11 @@ namespace TMS.Services
             if (isValid)
             {
                 var connectionString = _configService.GetConnectionStrings();
-                SqlConnection conn = null;
+                MySqlConnection conn = null;
                 IDbTransaction trans = null;
                 try
                 {
-                    conn = new SqlConnection(connectionString);
+                    conn = new MySqlConnection(connectionString);
                     if (conn != null && conn.State == ConnectionState.Closed)
                     {
                         conn.Open();

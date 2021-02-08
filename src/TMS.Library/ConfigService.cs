@@ -20,7 +20,7 @@ namespace TMS.Library
 
         public string GetConnectionStrings()
         {
-            return _configuration.GetConnectionString("SqlServerConnectionString");
+            return _configuration.GetConnectionString("MySqlConnectionString");
         }
     }
 }

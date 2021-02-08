@@ -46,10 +46,8 @@ namespace TMS.Repositories
         protected async Task<bool> DoSaveEntity(BaseEntity entity, IDbConnection conn = null, IDbTransaction trans = null)
         {
             var storeName = GetStoreName(entity);
-            //var param = ConvertUtils.ConvertObjectToDictionaryForStore(entity);
-            var param = new DynamicParameters();
-            param.Add("@TestId", (entity as Test).TestId);
-            param.Add("@TestName", (entity as Test).TestName);
+            var param = ConvertUtils.ConvertObjectToDictionaryForStore(entity);
+
             if (entity.GetTypePrimaryKey() == typeof(int))
             {
                 if (entity.EntityState == Enumeartions.EntityState.Insert)

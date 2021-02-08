@@ -13,6 +13,7 @@ namespace TMS.API.Extensions
         public static IServiceCollection AddConfigs(this IServiceCollection services, IConfiguration configuration)
         {
             services.Configure<JwtSettings>(configuration.GetSection(JwtSettings.Jwt));
+            services.Configure<AppSettings>(configuration.GetSection(AppSettings.ConfigName));
 
             return services;
         }

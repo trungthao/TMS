@@ -21,8 +21,12 @@ namespace TMS.Library.Utilities
                 properties = properties.Where(prop => prop.GetCustomAttribute(typeof(NotColumnAttribute), true) == null).ToArray();
                 foreach (var prop in properties)
                 {
-                    var propName = "@" + prop.Name;
+                    var propName = "$" + prop.Name;
                     object propValue = prop.GetValue(param);
+                    if (prop.PropertyType == typeof(bool))
+                    {
+                        propValue = Convert.ToInt32(propValue);
+                    }
                     dicParam.AddOrUpdate(propName, propValue);
                 }
             }

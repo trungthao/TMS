@@ -21,8 +21,8 @@ namespace TMS.Domain.Models
 
         public AuthenticateResponse(User user, string jwtToken, string refreshToken)
         {
-            Id = user.Id;
-            Username = user.Username;
+            Id = user.UserId;
+            //Username = user.Username;
             JwtToken = jwtToken;
             RefreshToken = refreshToken;
         }

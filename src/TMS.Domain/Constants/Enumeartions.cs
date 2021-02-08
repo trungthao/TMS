@@ -14,5 +14,11 @@ namespace TMS.Domain.Constants
         {
 
         }
+
+        public enum ResponseServiceStatusCode
+        {
+            Success = 200,
+            Fail = 500
+        }
     }
 }

@@ -2,9 +2,9 @@ using TMS.Domain.Constants;
 
 namespace TMS.Domain.Models
 {
-    public class BaseResponse
+    public class ServiceResult
     {
-        public int Status { get; set; }
+        public Enumeartions.ResponseServiceStatusCode Status { get; set; } = Enumeartions.ResponseServiceStatusCode.Success;
 
         public object Data { get; set; }
 

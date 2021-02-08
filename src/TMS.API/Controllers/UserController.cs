@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TMS.Domain.Entities;
 using TMS.Domain.Models;
 using TMS.Domain.Services;
 
@@ -24,6 +25,7 @@ namespace TMS.API.Controllers
         [HttpPost("authenticate")]
         public async Task<IActionResult> Authenticate(AuthenticateRequest authenModel)
         {
+            ServiceResult responseService = new ServiceResult();
             var response = await _userService.Authenticate(authenModel, IpAddress());
 
             if (response == null)
@@ -32,7 +34,26 @@ namespace TMS.API.Controllers
             }
 
             SetTokenCookie(response.RefreshToken);
-            return Ok(response);
+
+            responseService.Data = response;
+            return Ok(responseService);
+        }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> Register(RegisterRequest registerRequest)
+        {
+            ServiceResult serviceResult = new ServiceResult();
+
+            try
+            {
+                var userEntity = _mapper.Map<RegisterRequest, User>(registerRequest);
+                await _userService.Register(userEntity, Request.Headers["origin"]);
+            }
+            catch (Exception ex)
+            {
+            }
+
+            return Ok(serviceResult);
         }
 
         /// <summary>

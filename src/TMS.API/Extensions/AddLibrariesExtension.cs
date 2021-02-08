@@ -4,7 +4,7 @@ using TMS.Library.Interfaces;
 
 namespace TMS.API.Extensions
 {
-    public static class ConfigLibrariesExtension
+    public static class AddLibrariesExtension
     {
         public static IServiceCollection AddLibraries(this IServiceCollection services)
         {

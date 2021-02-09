@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TMS.API.Attributes;
 using TMS.Domain.Constants;
 using TMS.Domain.Entities;
 using TMS.Domain.Models;
@@ -17,14 +18,14 @@ namespace TMS.API.Controllers
     public class UserController : BaseController
     {
         private readonly IUserService _userService;
-        private readonly JwtSettings _jwtSettings;
+        private readonly AppSettings _appSettings;
 
         public UserController(IMapper mapper, 
-            IOptions<JwtSettings> jwtSettings,
+            IOptions<AppSettings> appSettings,
             IUserService userService) : base(mapper, userService)
         {
             _userService = userService;
-            _jwtSettings = jwtSettings.Value;
+            _appSettings = appSettings.Value;
         }
 
         [AllowAnonymous]
@@ -81,6 +82,14 @@ namespace TMS.API.Controllers
             await _userService.VerifyEmail(model.Token);
         }
 
+        [TMSAuthorize]
+        [HttpGet("test/{userId}")]
+        public async Task<IActionResult> Test(int userId)
+        {
+            var user = await _userService.GetEntityById<User>(userId);
+            return Ok(user);
+        }
+
         /// <summary>
         /// set httponly cho refresh token
         /// </summary>
@@ -90,7 +99,7 @@ namespace TMS.API.Controllers
             var cookieOptions = new CookieOptions
             {
                 HttpOnly = true,
-                Expires = DateTime.UtcNow.AddDays(_jwtSettings.RefreshTokenExpireDays)
+                Expires = DateTime.UtcNow.AddDays(_appSettings.JwtSettings.RefreshTokenExpireDays)
             };
 
             Response.Cookies.Append(Constants.Cookies_RefreshToken, token, cookieOptions);

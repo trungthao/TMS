@@ -2,6 +2,7 @@ namespace TMS.Domain.Constants
 {
     public class AppSettings
     {
+        public JwtSettings JwtSettings { get; set; }
         public const string ConfigName = "AppSettings";
 
         public string EmailFrom { get; set; }

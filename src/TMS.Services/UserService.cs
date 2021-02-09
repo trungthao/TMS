@@ -21,18 +21,18 @@ namespace TMS.Services
 {
     public class UserService : BaseService, IUserService
     {
-        private readonly JwtSettings _jwtSettings;
+        private readonly AppSettings _appSettings;
         private readonly IEmailService _emailService;
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
 
         public UserService(IUserRepository repository,
             IEmailService emailService,
-            IOptions<JwtSettings> jwtSettings,
+            IOptions<AppSettings> appSettings,
             IMapper mapper,
             IConfigService configService) : base(repository, configService)
         {
-            _jwtSettings = jwtSettings.Value;
+            _appSettings = appSettings.Value;
             _emailService = emailService;
             _userRepository = repository;
             _mapper = mapper;
@@ -117,15 +117,15 @@ namespace TMS.Services
         private string GenerateJwtToken(User user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var secretKey = Encoding.ASCII.GetBytes(_jwtSettings.SecretKey);
+            var secretKey = Encoding.ASCII.GetBytes(_appSettings.JwtSettings.SecretKey);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
-                    new Claim(ClaimTypes.Name, user.Email)
+                    new Claim(ClaimKeyConstants.UserId, user.UserId.ToString()),
+                    new Claim(ClaimKeyConstants.Email, user.Email)
                 }),
-                Expires = DateTime.UtcNow.AddMinutes(_jwtSettings.ExpireMinutes),
+                Expires = DateTime.UtcNow.AddMinutes(_appSettings.JwtSettings.ExpireMinutes),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(secretKey), SecurityAlgorithms.HmacSha256Signature)
             };
 
@@ -143,7 +143,7 @@ namespace TMS.Services
                 {
                     UserId = user.UserId,
                     Token = Convert.ToBase64String(randomBytes),
-                    ExpireDate = DateTime.UtcNow.AddDays(_jwtSettings.RefreshTokenExpireDays),
+                    ExpireDate = DateTime.UtcNow.AddDays(_appSettings.JwtSettings.RefreshTokenExpireDays),
                     CreatedDate = DateTime.UtcNow,
                     CreatedByIp = ipAddress,
                     EntityState = Enumeartions.EntityState.Insert

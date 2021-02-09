@@ -18,8 +18,4 @@
     <ProjectReference Include="..\TMS.Repositories\TMS.Repositories.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Middleware\" />
-  </ItemGroup>
-
 </Project>

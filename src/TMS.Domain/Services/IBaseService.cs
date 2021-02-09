@@ -7,5 +7,7 @@ namespace TMS.Domain.Services
     public interface IBaseService
     {
         Task<SaveBaseEntityResponse> SaveEntity(BaseEntity entity);
+
+        Task<T> GetEntityById<T>(int id);
     }
 }

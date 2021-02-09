@@ -20,7 +20,12 @@ namespace TMS.Domain.Entities
 
         public bool AcceptTerms { get; set; }
 
+        [JsonIgnore]
         public string PasswordHash { get; set; }
+
+        public DateTime? VerifiedDate { get; set; }
+
+        public bool IsVerified => VerifiedDate.HasValue;
 
         [NotColumn]
         [JsonIgnore]

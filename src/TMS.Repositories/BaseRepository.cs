@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using System;
 using System.Data;
 using System.Threading.Tasks;
 using TMS.Domain.Constants;
@@ -17,6 +18,13 @@ namespace TMS.Repositories
         public BaseRepository(IDatabaseService databaseService)
         {
             _databaseService = databaseService;
+        }
+
+        public Task<T> GetEntityById<T>(int id)
+        {
+            var storeName = GetStoreName(Enumeartions.StoreType.SelectById, typeof(T));
+
+            return _databaseService.GetObjectAsync<T>(storeName, new { id });
         }
 
         /// <summary>
@@ -45,7 +53,7 @@ namespace TMS.Repositories
         /// <returns></returns>
         protected async Task<bool> DoSaveEntity(BaseEntity entity, IDbConnection conn = null, IDbTransaction trans = null)
         {
-            var storeName = GetStoreName(entity);
+            var storeName = GetStoreName(Enumeartions.StoreType.Save, entity.GetType(), entity.EntityState);
             var param = ConvertUtils.ConvertObjectToDictionaryForStore(entity);
 
             if (entity.GetTypePrimaryKey() == typeof(int))
@@ -66,13 +74,35 @@ namespace TMS.Repositories
             return false;
         }
 
-        protected string GetStoreName(BaseEntity entity)
+        protected string GetStoreName(Enumeartions.StoreType storeType, Type entityType, Enumeartions.EntityState entityState = Enumeartions.EntityState.None)
         {
-            var type = entity.GetType();
-            var entityName = type.Name;
+            var entityName = entityType.Name;
             string storeNameTemplate = string.Empty;
 
-            switch (entity.EntityState)
+            switch (storeType)
+            {
+                case Enumeartions.StoreType.Save:
+                    storeNameTemplate = GetSaveStoreName(entityName, entityState);
+                    break;
+                case Enumeartions.StoreType.SelectById:
+                    storeNameTemplate = GetSelectByIdStoreName(entityName);
+                    break;
+            }
+
+            return storeNameTemplate;
+        }
+
+        protected string GetSelectByIdStoreName(string entityName)
+        {
+            var storeNameTemplate = DatabaseConstants.mscTemplateStoreNameGetObjectById;
+            return string.Format(storeNameTemplate, entityName);
+        }
+
+        protected string GetSaveStoreName(string entityName, Enumeartions.EntityState entityState)
+        {
+            string storeNameTemplate = string.Empty;
+
+            switch (entityState)
             {
                 case Enumeartions.EntityState.Insert:
 

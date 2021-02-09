@@ -49,13 +49,13 @@ namespace TMS.Library
         {
             if (conn != null)
             {
-                return await conn.QueryFirstAsync<T>(sql, param, transaction, timeout, commandType);
+                return await conn.QueryFirstOrDefaultAsync<T>(sql, param, transaction, timeout, commandType);
             }
             else
             {
                 using (conn = new MySqlConnection(GetConnectionString()))
                 {
-                    return await conn.QueryFirstAsync<T>(sql, param, transaction, timeout, commandType);
+                    return await conn.QueryFirstOrDefaultAsync<T>(sql, param, transaction, timeout, commandType);
                 }
             }
         }

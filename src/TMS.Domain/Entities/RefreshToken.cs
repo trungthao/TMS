@@ -6,13 +6,15 @@ namespace TMS.Domain.Entities
     public class RefreshToken : BaseEntity
     {
         [JsonIgnore]
-        public int Id { get; set; }
+        public int RefreshTokenId { get; set; }
+
+        public int UserId { get; set; }
 
         public string Token { get; set; }
 
-        public DateTime Expires { get; set; }
+        public DateTime ExpireDate { get; set; }
 
-        public bool IsExpired => DateTime.UtcNow >= Expires;
+        public bool IsExpired => DateTime.UtcNow >= ExpireDate;
 
         public DateTime CreatedDate { get; set; }
 

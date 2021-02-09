@@ -11,6 +11,7 @@ namespace src.TMS.API.Mapping
             CreateMap<SaveTestRequest, Test>();
             CreateMap<SaveTestDetailRequest, TestDetail>();
             CreateMap<RegisterRequest, User>();
+            CreateMap<User, AuthenticateResponse>();
         }
     }
 }

@@ -2,10 +2,12 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TMS.Domain.Constants;
 using TMS.Domain.Entities;
 using TMS.Domain.Models;
 using TMS.Domain.Services;
@@ -15,10 +17,14 @@ namespace TMS.API.Controllers
     public class UserController : BaseController
     {
         private readonly IUserService _userService;
+        private readonly JwtSettings _jwtSettings;
 
-        public UserController(IMapper mapper, IUserService userService) : base(mapper, userService)
+        public UserController(IMapper mapper, 
+            IOptions<JwtSettings> jwtSettings,
+            IUserService userService) : base(mapper, userService)
         {
             _userService = userService;
+            _jwtSettings = jwtSettings.Value;
         }
 
         [AllowAnonymous]
@@ -39,6 +45,19 @@ namespace TMS.API.Controllers
             return Ok(responseService);
         }
 
+        [HttpPost("refresh-token")]
+        public async Task<IActionResult> RefreshToken()
+        {
+            ServiceResult serviceResult = new ServiceResult();
+
+            var refreshToken = Request.Cookies[Constants.Cookies_RefreshToken];
+            var response = await _userService.RefreshToken(refreshToken, IpAddress());
+            SetTokenCookie(response.RefreshToken);
+            serviceResult.Data = response;
+
+            return Ok(serviceResult);
+        }
+
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterRequest registerRequest)
         {
@@ -56,6 +75,12 @@ namespace TMS.API.Controllers
             return Ok(serviceResult);
         }
 
+        [HttpPost("verify-email")]
+        public async Task VerifyEmail(VerifyEmailRequest model)
+        {
+            await _userService.VerifyEmail(model.Token);
+        }
+
         /// <summary>
         /// set httponly cho refresh token
         /// </summary>
@@ -65,10 +90,10 @@ namespace TMS.API.Controllers
             var cookieOptions = new CookieOptions
             {
                 HttpOnly = true,
-                Expires = DateTime.UtcNow.AddDays(7)
+                Expires = DateTime.UtcNow.AddDays(_jwtSettings.RefreshTokenExpireDays)
             };
 
-            Response.Cookies.Append("refreshToken", token, cookieOptions);
+            Response.Cookies.Append(Constants.Cookies_RefreshToken, token, cookieOptions);
         }
     }
 }

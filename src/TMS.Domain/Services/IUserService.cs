@@ -13,5 +13,9 @@ namespace TMS.Domain.Services
         Task<AuthenticateResponse> Authenticate(AuthenticateRequest authModel, string ipAddress);
 
         Task Register(User userEntity, string origin);
+
+        Task VerifyEmail(string token);
+
+        Task<AuthenticateResponse> RefreshToken(string token, string ipAddress);
     }
 }

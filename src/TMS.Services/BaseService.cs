@@ -137,5 +137,16 @@ namespace TMS.Services
         private void AfterSaveEntity(BaseEntity entity, SaveBaseEntityResponse response)
         {
         }
+
+        /// <summary>
+        /// Lấy entity theo id
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<T> GetEntityById<T>(int id)
+        {
+            return await _repository.GetEntityById<T>(id);
+        }
     }
 }

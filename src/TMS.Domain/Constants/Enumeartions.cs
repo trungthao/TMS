@@ -15,6 +15,13 @@ namespace TMS.Domain.Constants
 
         }
 
+        public enum StoreType
+        {
+            Save = 1,
+            SelectById = 2,
+            Paging = 3
+        }
+
         public enum ResponseServiceStatusCode
         {
             Success = 200,

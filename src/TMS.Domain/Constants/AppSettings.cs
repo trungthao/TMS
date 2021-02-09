@@ -13,5 +13,7 @@ namespace TMS.Domain.Constants
         public string SmtpUser { get; set; }
 
         public string SmtpPass { get; set; }
+
+        public bool SmtpUseSsl { get; set; }
     }
 }
